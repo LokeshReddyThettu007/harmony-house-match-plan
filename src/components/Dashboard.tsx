@@ -5,18 +5,18 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useUser } from './UserContext';
 import { MatchingInterface } from './MatchingInterface';
-import { ExpenseTracker } from './ExpenseTracker';
+import { BillSplitter } from './BillSplitter';
 import { ListingCreator } from './ListingCreator';
-import { Home, Heart, DollarSign, Plus, User, MessageSquare } from 'lucide-react';
+import { Home, Heart, Receipt, Plus, User, MessageSquare } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
   const { user } = useUser();
-  const [activeTab, setActiveTab] = useState('matches');
+  const [activeTab, setActiveTab] = useState('discover');
 
   const tabs = [
-    { id: 'matches', label: 'Discover', icon: Heart },
+    { id: 'discover', label: 'Discover', icon: Heart },
     { id: 'listings', label: 'Listings', icon: Home },
-    { id: 'expenses', label: 'Expenses', icon: DollarSign },
+    { id: 'bills', label: 'Bills & Splits', icon: Receipt },
     { id: 'messages', label: 'Messages', icon: MessageSquare },
     { id: 'profile', label: 'Profile', icon: User },
   ];
@@ -25,12 +25,12 @@ export const Dashboard: React.FC = () => {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'matches':
+      case 'discover':
         return <MatchingInterface />;
       case 'listings':
         return <ListingCreator />;
-      case 'expenses':
-        return <ExpenseTracker />;
+      case 'bills':
+        return <BillSplitter />;
       case 'messages':
         return <MessagesView />;
       case 'profile':
@@ -53,7 +53,7 @@ export const Dashboard: React.FC = () => {
               <h1 className="text-xl font-bold text-gray-800">RoomieMatch</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">Welcome, {user.name}!</span>
+              <span className="text-sm text-gray-600">Welcome, {user.name}! 🏠</span>
               <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm font-medium">
                   {user.name.charAt(0).toUpperCase()}
