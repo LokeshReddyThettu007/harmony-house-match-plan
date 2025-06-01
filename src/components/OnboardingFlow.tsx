@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -365,7 +364,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
           </div>
           {step > 0 && (
             <CardTitle className="text-center flex items-center justify-center space-x-2">
-              <steps[step].icon className="w-6 h-6" />
+              {React.createElement(steps[step].icon, { className: "w-6 h-6" })}
               <span>{steps[step].title}</span>
             </CardTitle>
           )}
